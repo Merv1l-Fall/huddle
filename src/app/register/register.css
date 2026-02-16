@@ -1,0 +1,88 @@
+.register-wrapper{
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.register-main-container {
+	padding: 1rem;
+	display: flex;
+	min-width: 27rem;
+	flex-direction: column;
+	background-color: var(--main-gray);
+	border-radius: 0.7rem;
+	gap: 1rem;
+
+	h1{
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: var(--main-white);
+	}
+
+	p{
+	color: var(--main-white);
+	font-size: 0.7rem;
+	};
+}
+
+.sign-up-btns {
+	display: flex;
+	gap: 1rem;
+}
+
+.sign-up-btn {
+	color: var(--main-white);
+	flex: 1;
+	border-radius: 0.4rem;
+	height: 2rem;
+	border: none;
+	font-size: 0.9rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: var(--default-shadow);
+	white-space: nowrap;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+
+	&:hover{
+		scale: 1.04;
+	}
+}
+
+.sign-up-btn.google {
+	background-color: #D2D2D2;
+	
+	color: black;
+	
+	.google-icon {
+		height: 1.2rem;
+		width: 1.2rem;
+		margin-right: 0.5rem;
+	}
+	&:hover{
+		background-color: #B0B0B0;
+	}
+}
+
+.sign-up-btn.email {
+	background-color: var(--dark-gray);
+
+	&:hover{
+		background-color: #121212;
+	}
+}
+
+.login-link {
+	color: var(--main-white);
+	font-size: 0.8rem;
+	margin-top: 0.5rem;
+
+	a {
+		color: var(--main-green);
+		font-weight: 500;
+	}
+}
