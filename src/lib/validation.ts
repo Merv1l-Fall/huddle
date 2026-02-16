@@ -5,6 +5,9 @@ export const registerSchema = z.object({
   email: z.email('Invalid email address').min(1, 'Email is required'),
   password: z.string().min(6, 'Password must be at least 6 characters'),
   username: z.string().min(5, 'Username must be at least 5 characters').max(20, 'Username must be at most 20 characters'),
+  confirmPassword: z.string().min(1, 'Confirm password is required'),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords must match",
 });
 
 export const loginSchema = z.object({

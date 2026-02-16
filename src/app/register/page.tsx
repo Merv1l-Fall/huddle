@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "./register.css"
 import Link from "next/link";
+import RegisterForm from "@/components/forms/RegisterForm";
 
 const RegisterPage = () => {
 	const [isEmailAndPassword, setIsEmailAndPassword] = useState(false);
@@ -10,8 +11,9 @@ const RegisterPage = () => {
 	return (
 		<div className="register-wrapper">
 			{isEmailAndPassword ? (
-				<div className="email-and-password-container">
-					<h1>Sign up with Email</h1>
+				<div className="register-main-container">
+					<h1>Sign up to Huddle with email!</h1>
+					<RegisterForm onGoBackToggle={setIsEmailAndPassword} />
 				</div>
 			) : (
 				<div className="register-main-container">
