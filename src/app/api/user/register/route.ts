@@ -7,7 +7,40 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    // Validate with Zod
+    // Check if this is a Google sign-in (has idToken)
+    if (body.idToken) {
+      // Google OAuth registration flow
+      const decodedToken = await auth.verifyIdToken(body.idToken);
+      
+      // Check if user already exists
+      const existingUser = await db.collection('users').doc(decodedToken.uid).get();
+      if (existingUser.exists) {
+        // User already exists - auto-login them instead
+        const userData = existingUser.data();
+        return Response.json(
+          { message: 'User already exists. Logged in successfully.', userId: decodedToken.uid, needsSetup: !userData?.username },
+          { status: 200 }
+        );
+      }
+
+      // Create user profile in Firestore (username required later via setup)
+      await db.collection('users').doc(decodedToken.uid).set({
+        displayName: decodedToken.name || 'User',
+        email: decodedToken.email,
+        username: null, // Will be set during setup
+        photoURL: decodedToken.picture || null,
+        createdAt: Timestamp.now(),
+        groupIds: [],
+        needsSetup: true, // Flag to redirect to setup page
+      });
+
+      return Response.json(
+        { message: 'User registered with Google successfully', userId: decodedToken.uid, needsSetup: true },
+        { status: 201 }
+      );
+    }
+
+    // Email/Password registration flow
     const validatedData = registerSchema.parse(body);
 
 	//check if username is already taken

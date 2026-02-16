@@ -11,7 +11,8 @@ interface RegisterFormProps {
 
 
 const RegisterForm = ({ onGoBackToggle }: RegisterFormProps) => {
-	const { register, handleSubmit, reset, formState: { errors } } = useForm({
+
+	const { register, handleSubmit, reset, formState: { errors } } = useForm<RegisterInput>({
 		resolver: zodResolver(registerSchema),
 		mode: "onBlur" //Might need to doubblechek UX
 	});
@@ -98,7 +99,7 @@ const RegisterForm = ({ onGoBackToggle }: RegisterFormProps) => {
 			</div>
 			<div className="register-form-btns">
 			<button className='register-form-btn register-submit-btn' type="submit">Register!</button>
-			<button className='register-form-btn register-go-back-btn' type='button' onClick={handleGoBack}>Back to login</button>
+			<button className='register-form-btn register-go-back-btn' type='button' onClick={handleGoBack}>Go Back</button>
 
 			</div>
 		</form>

@@ -1,5 +1,7 @@
 import { verifyRequest } from '@/lib/auth';
 import { db } from '@/lib/firebase-admin';
+import { updateProfileSchema } from '@/lib/validation';
+import {z} from "zod"
 
 export async function GET(req: Request) {
   try {
@@ -17,7 +19,7 @@ export async function GET(req: Request) {
         { status: 404 }
       );
     }
-	
+
     return Response.json(
       { uid, ...userDoc.data() },
       { status: 200 }
@@ -36,6 +38,46 @@ export async function GET(req: Request) {
           { status: 401 }
         );
       }
+      return Response.json(
+        { error: error.message },
+        { status: 500 }
+      );
+    }
+
+    return Response.json(
+      { error: 'An unexpected error occurred' },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PATCH(req: Request) {
+  try {
+    // Verify the user is authenticated
+    const decodedToken = await verifyRequest(req);
+    const uid = decodedToken.uid;
+
+    const body = await req.json();
+    const validatedData = updateProfileSchema.parse(body);
+
+    // Update only displayName (username is immutable)
+    await db.collection('users').doc(uid).update({
+      displayName: validatedData.displayName,
+    });
+
+    return Response.json(
+      { message: 'Profile updated successfully' },
+      { status: 200 }
+    );
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return Response.json(
+        { error: 'Validation failed', details: z.treeifyError(error) },
+        { status: 400 }
+      );
+    }
+
+    if (error instanceof Error) {
       return Response.json(
         { error: error.message },
         { status: 500 }

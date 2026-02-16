@@ -21,3 +21,10 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.error-message {
+	margin-top: 2px;
+	height: 0.8rem;
+	color: #ff6b6b;
+	font-size: 0.8rem;
+}

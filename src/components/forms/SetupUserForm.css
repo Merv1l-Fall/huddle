@@ -1,10 +1,10 @@
-.form-group {
+.setup-form-group {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 01rem;
 }
 
-.form-group input {
+.setup-form-group input {
 	padding: 10px;
 	background-color: var(--dark-gray);
 	color: var(--main-white);
@@ -14,31 +14,20 @@
 	box-shadow: var(--default-shadow);
 }
 
-.form-group label {
+.setup-form-group label {
 	color: var(--main-white);
 	font-size: 1rem;
 	margin-bottom: 0.2rem;
 }
 
-.form-group input:focus {
+.setup-form-group input:focus {
 	border-color: var(--main-green);
 	outline: none;
 }
 
-/* .error-message {
-	height: 0.8rem;
-	color: #ff6b6b;
-	font-size: 0.8rem;
-} */
-
-.register-form-btns {
-	display: flex;
-	gap: 1rem;
-}
-
-.register-form-btn {
+.setup-confirm-btn {
+	background-color: var(--main-green);
 	color: var(--main-white);
-	flex: 1;
 	border-radius: 0.4rem;
 	height: 2rem;
 	border: none;
@@ -50,24 +39,9 @@
 	white-space: nowrap;
 	transition: all 0.1s ease-in-out;
 	cursor: pointer;
+	width: 50%;
 
 	&:hover{
 		scale: 1.04;
-	}
-}
-
-.register-submit-btn {
-	background-color: var(--main-green);
-	
-	&:hover{
-		background-color: #0B5A1B;
-	}
-}
-
-.register-go-back-btn {
-	background-color: var(--dark-gray);
-
-	&:hover{
-		background-color: #121212;
 	}
 }

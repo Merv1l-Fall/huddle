@@ -10,6 +10,11 @@ export const registerSchema = z.object({
   message: "Passwords must match",
 });
 
+export const updateProfileSchema = z.object({
+  displayName: z.string().min(1, 'Display name is required').max(25, 'Display name must be at most 25 characters'),
+ 
+});
+
 export const loginSchema = z.object({
   email: z.email('Invalid email address'),
   password: z.string().min(1, 'Password is required'),
