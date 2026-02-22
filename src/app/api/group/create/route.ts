@@ -3,7 +3,7 @@ import { db } from "@/lib/firebase-admin";
 import { Timestamp } from "firebase-admin/firestore";
 import * as admin from "firebase-admin";
 import { z } from "zod";
-import { createGroupSchema } from "@/lib/validation";
+import { createGroupSchema} from "@/lib/validation";
 
 export async function POST(req: Request) {
 	try{

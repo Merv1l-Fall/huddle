@@ -8,6 +8,7 @@ export const registerSchema = z.object({
   confirmPassword: z.string().min(1, 'Confirm password is required'),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords must match",
+  path: ["confirmPassword"],
 });
 
 export const updateProfileSchema = z.object({

@@ -10,6 +10,66 @@ export interface User {
 
 }
 
+export interface Group {
+	id: string;
+	name: string;
+	description: string;
+	createdBy: string;
+	memberIds: string[];
+	invitedUsers: string[];
+	adminIds: string[];
+	createdAt: Date;
+	photoURL?: string;
+}
+
+export interface Event {
+	id: string;
+	groupId: string;
+	title: string;
+	description: string;
+	date: Date;
+	createdBy: string;
+	invitedUsers: string[];
+	attendees: Record<string, 'yes' | 'no' | 'pending'>;
+	createdAt: Date;
+	location?: {
+		address: string;
+		city: string;
+		lat: number;
+		lng: number;
+	};
+}
+
+export interface GroupDetailResponse {
+  group: {
+    id: string;
+    name: string;
+    description: string;
+    createdBy: string;
+    memberIds: string[];
+    invitedUsers: string[];
+    adminIds: string[];
+    createdAt: Date;
+    photoURL?: string;
+  };
+  events: {
+    id: string;
+    title: string;
+    description: string;
+    date: Date;
+    createdBy: string;
+    invitedUsers: string[];
+    attendees: Record<string, 'yes' | 'no' | 'pending'>;
+    location?: {
+	  address: string;
+	  city: string;
+	  lat?: number;
+	  lng?: number;
+	};
+  }[];
+  userAttendanceStatus: Record<string, 'yes' | 'no' | 'pending'>; // For all events in this group
+}
+
 // For registration - no id or createdAt yet
 export type CreateUserInput = Omit<User, 'id' | 'createdAt'>
 

@@ -1,10 +1,10 @@
-.form-group {
+.login-form-group {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 1rem;
 }
 
-.form-group input {
+.login-form-group input {
 	padding: 10px;
 	background-color: var(--dark-gray);
 	color: var(--main-white);
@@ -14,23 +14,23 @@
 	box-shadow: var(--default-shadow);
 }
 
-.form-group label {
+.login-form-group label {
 	color: var(--main-white);
 	font-size: 1rem;
 	margin-bottom: 0.2rem;
 }
 
-.form-group input:focus {
+.login-form-group input:focus {
 	border-color: var(--main-green);
 	outline: none;
 }
 
-.register-form-btns {
+.login-form-btns {
 	display: flex;
 	gap: 1rem;
 }
 
-.register-form-btn {
+.login-form-btn {
 	color: var(--main-white);
 	flex: 1;
 	border-radius: 0.4rem;
@@ -50,7 +50,7 @@
 	}
 }
 
-.register-submit-btn {
+.login-submit-btn {
 	background-color: var(--main-green);
 	
 	&:hover{
@@ -58,7 +58,7 @@
 	}
 }
 
-.register-go-back-btn {
+.login-go-back-btn {
 	background-color: var(--dark-gray);
 
 	&:hover{

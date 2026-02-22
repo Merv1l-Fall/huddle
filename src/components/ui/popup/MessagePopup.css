@@ -1,0 +1,77 @@
+.message-popup {
+	background-color: var(--main-gray);
+	padding: 2rem;
+	border-radius: 8px;
+	box-shadow: var(--default-shadow);
+	text-align: center;
+	max-width: 400px;
+	width: 100%;
+
+	p {
+		font-size: 1rem;
+		color: var(--main-white);
+		margin-bottom: 1.5rem;
+	}
+
+	button {
+		color: var(--main-white);
+		border: none;
+		padding: 0.5rem 1.5rem;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 1rem;
+		transition: background-color 0.3s ease;
+	}
+}
+
+/* Error variant - red accent */
+.message-popup--error {
+	border-left: 4px solid #dc2626;
+
+	button {
+		background-color: #dc2626;
+
+		&:hover {
+			background-color: #b91c1c;
+		}
+	}
+}
+
+/* Success variant - green accent */
+.message-popup--success {
+	border-left: 4px solid var(--main-green);
+
+	button {
+		background-color: var(--main-green);
+
+		&:hover {
+			background-color: #0a4d16;
+		}
+	}
+}
+
+/* Warning variant - orange accent */
+.message-popup--warning {
+	border-left: 4px solid #f59e0b;
+
+	button {
+		background-color: #f59e0b;
+
+		&:hover {
+			background-color: #d97706;
+		}
+	}
+}
+
+/* Info variant - blue accent */
+.message-popup--info {
+	border-left: 4px solid #3b82f6;
+
+	button {
+		background-color: #3b82f6;
+
+		&:hover {
+			background-color: #2563eb;
+		}
+	}
+}

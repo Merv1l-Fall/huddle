@@ -1,7 +1,5 @@
-//not in use and might not need at all, since Firebase auth handles Login client side
 
 import {auth, db} from "@/lib/firebase-admin";
-import { loginSchema } from "@/lib/validation";
 import { Timestamp } from "firebase-admin/firestore";
 import { z } from "zod";
 
@@ -42,20 +40,6 @@ export async function POST(req: Request) {
 			);
 		}
 
-		// Validate with Zod
-		const validatedData = loginSchema.parse(body);
-
-		if (!validatedData.email || !validatedData.password) {
-			return Response.json(
-				{ error: 'Email and password are required' },
-				{ status: 400 }
-			);
-		}
-		const userEmail = validatedData.email;
-		//sign in with Firebase Auth
-		const userRecord = await auth.getUserByEmail(userEmail);
-		//check password
-		// const isPasswordValid = await auth.verifyPassword(userEmail, userRecord.passwordHash);
 	}
 	catch (error) {
 		if (error instanceof z.ZodError) {
@@ -71,4 +55,6 @@ export async function POST(req: Request) {
 			);
 		}
 	}
+
+	return Response.json({ error: 'An unknown error occurred' }, { status: 500 });
 }
