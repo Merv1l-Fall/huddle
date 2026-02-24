@@ -24,6 +24,12 @@ export const loginSchema = z.object({
 export const createGroupSchema = z.object({
 	name: z.string().min(1, "Group name is required").max(20, "group name cant be more than 20 characters"),
 	description: z.string().max(100, "Description cant be more than 100 characteres").optional(),
+	location: z.object({
+		address: z.string().min(1, "Address is required"),
+		city: z.string().min(1, "City is required"),
+		// lat: z.number().optional(),
+		// lng: z.number().optional(),
+	}).optional()
 })
 
 export const leaveGroupSchema = z.object({

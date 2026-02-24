@@ -65,6 +65,7 @@ export async function GET(req: Request, { params }: { params: { groupId: string 
 				adminIds: groupData?.adminIds,
 				createdAt: groupData?.createdAt.toDate(),
 				photoURL: groupData?.photoURL || null,
+				groupColor: groupData?.groupColor || "#000000",
 			},
 			events: events,
 			userAttendanceStatus,

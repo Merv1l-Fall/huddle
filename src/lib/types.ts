@@ -20,6 +20,7 @@ export interface Group {
 	adminIds: string[];
 	createdAt: Date;
 	photoURL?: string;
+	groupColor: string;
 }
 
 export interface Event {
@@ -51,6 +52,7 @@ export interface GroupDetailResponse {
     adminIds: string[];
     createdAt: Date;
     photoURL?: string;
+    groupColor: string;
   };
   events: {
     id: string;
@@ -63,8 +65,8 @@ export interface GroupDetailResponse {
     location?: {
 	  address: string;
 	  city: string;
-	  lat?: number;
-	  lng?: number;
+	  lat: number;
+	  lng: number;
 	};
   }[];
   userAttendanceStatus: Record<string, 'yes' | 'no' | 'pending'>; // For all events in this group

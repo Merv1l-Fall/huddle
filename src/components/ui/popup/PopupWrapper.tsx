@@ -1,4 +1,4 @@
-import "PopupWrapper.css";
+import "./PopupWrapper.css";
 
 const PopupWrapper: React.FC<{ children: React.ReactNode; onClose: () => void }> = ({ children, onClose }) => {
 	return (

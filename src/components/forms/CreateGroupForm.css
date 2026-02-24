@@ -1,0 +1,91 @@
+.create-group-form {
+	background-color: var(--main-gray);
+	padding: 2rem;
+	border-radius: 0.5rem;
+	width: 24rem;
+	box-shadow: var(--default-shadow);
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+	padding: 0.8rem;
+	width: 100%;
+	background-color: var(--dark-gray);
+	color: var(--main-white);
+	border: none;
+	border-radius: 7px;
+	box-shadow: var(--default-shadow);
+	font-family: inherit;
+	font-size: 1rem;
+}
+
+.form-group textarea {
+	resize: none;
+	min-height: 80px;
+	/* Remove scrollbar on webkit browsers */
+}
+
+.form-group label {
+	color: var(--main-white);
+	font-size: 1rem;
+	margin-bottom: 0.2rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	border-color: var(--main-green);
+	outline: none;
+}
+
+.error-message {
+	color: #ff6b6b;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+
+.form-buttons {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.submit-btn,
+.cancel-btn {
+	color: var(--main-white);
+	flex: 1;
+	border-radius: 0.4rem;
+	height: 2rem;
+	border: none;
+	font-size: 0.9rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: var(--default-shadow);
+	white-space: nowrap;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+}
+
+.submit-btn {
+	background-color: var(--main-green);
+
+	&:hover {
+		background-color: #0B5A1B;
+		scale: 1.04;
+	}
+}
+
+.cancel-btn {
+	background-color: var(--dark-gray);
+
+	&:hover {
+		background-color: #121212;
+		scale: 1.04;
+	}
+}

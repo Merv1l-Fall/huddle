@@ -1,0 +1,32 @@
+.group-icon, .create-group-icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	color: var(--main-white);
+	font-weight: bold;
+	font-size: 0.9rem;
+	flex-shrink: 0;
+	height: auto;
+
+	border-radius: 10px;
+}
+
+.create-group-icon{
+	background-color: var(--main-green);
+	border: none;
+	height: 4rem;
+	width: 4rem;
+
+	.plus-icon {
+		width: 2rem;
+	}
+}
+
+.groups-navbar {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	height: 100%;
+}

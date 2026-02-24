@@ -22,6 +22,12 @@ export const loginSchema = z.object({
 	password: z.string().min(1, 'Password is required'),
 });
 
+export const createGroupSchema = z.object({
+	name: z.string().min(1, "Group name is required").max(20, "Group name can't be more than 20 characters"),
+	description: z.string().max(100, "Description can't be more than 100 characters").optional().or(z.literal('')),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type SetupUserInput = z.infer<typeof setupUserSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
+export type CreateGroupInput = z.infer<typeof createGroupSchema>;

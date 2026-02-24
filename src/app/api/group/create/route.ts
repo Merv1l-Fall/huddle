@@ -5,6 +5,15 @@ import * as admin from "firebase-admin";
 import { z } from "zod";
 import { createGroupSchema} from "@/lib/validation";
 
+const baseHues = [135, 200, 275, 30];
+
+function getRandomGroupColor(): string {
+  const base = baseHues[Math.floor(Math.random() * baseHues.length)];
+  const hue = base + Math.floor(Math.random() * 20 - 10); // ±10 variation
+
+  return `hsl(${hue}, 60%, 40%)`;
+}
+
 export async function POST(req: Request) {
 	try{
 		//verify user is authenticated
@@ -16,6 +25,8 @@ export async function POST(req: Request) {
 		//Validate
 		const validatedData = createGroupSchema.parse(body);
 
+		// validatedData.location && 
+
 		//create the group in firestore
 		const groupRef = await db.collection("groups").add({
 			name: validatedData.name,
@@ -26,6 +37,8 @@ export async function POST(req: Request) {
 			adminIds: [uid],
 			invitedUsers: [],
 			photoURL: null,
+			groupColor: getRandomGroupColor(),
+			location: validatedData.location || null
 		});
 
 		//update user's groupIds
