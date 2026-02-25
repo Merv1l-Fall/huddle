@@ -7,7 +7,7 @@ interface AuthState {
 	loading: boolean;
 	setUser: (user: User | null) => void;
 	setLoading: (loading: boolean) => void;
-	initAuth: () => void;
+	initAuth: () => () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -17,8 +17,10 @@ export const useAuthStore = create<AuthState>((set) => ({
 	setLoading: (loading) => set({ loading }),
 	initAuth: () => {
 		const auth = getAuth(app);
-		onAuthStateChanged(auth, (user) => {
-			set({ user: user });
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			set({ user, loading: false });
 		});
+
+		return unsubscribe;
 	}
 }));

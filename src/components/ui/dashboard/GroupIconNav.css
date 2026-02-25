@@ -5,18 +5,71 @@
 	border-radius: 50%;
 	color: var(--main-white);
 	font-weight: bold;
-	font-size: 0.9rem;
+	font-size: 1.5rem;
 	flex-shrink: 0;
-	height: auto;
+	/* height: auto; */
 
 	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+	position: relative;
+
+	/* &:hover {
+		scale: 1.04;
+	} */
+
+	&::after {
+		content: attr(data-group-name);
+		position: absolute;
+		left: calc(100% + 0.5rem);
+		top: 50%;
+		transform: translateY(-50%) scale(0.98);
+		background-color: rgba(10, 10, 10, 0.9);
+		color: var(--main-white);
+		padding: 0.35rem 0.6rem;
+		border-radius: 0.5rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		opacity: 0;
+		pointer-events: none;
+		white-space: nowrap;
+		transition: opacity 0.12s ease, transform 0.12s ease;
+		z-index: 5;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 0.55rem;
+		height: 0.7rem;
+		left: calc(100% + 0.1rem);
+		top: 50%;
+		transform: translateY(-50%) scale(0.98);
+		background-color: rgba(10, 10, 10, 0.9);
+		clip-path: polygon(0 50%, 100% 0, 100% 100%);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.12s ease, transform 0.12s ease;
+		z-index: 6;
+	}
+
+	&:hover::after {
+		opacity: 1;
+		transform: translateY(-50%) scale(1);
+	}
+
+	&:hover::before {
+		opacity: 1;
+		transform: translateY(-50%) scale(1);
+	}
 }
 
 .create-group-icon{
-	background-color: var(--main-green);
+	background-color: var(--main-gray);
 	border: none;
-	height: 4rem;
-	width: 4rem;
+	height: 3.5rem;
+	width: 3.5rem;
 
 	.plus-icon {
 		width: 2rem;

@@ -7,6 +7,7 @@ const GroupIcon = ({
 	groupColor,
 	groupPhoto,
 	width,
+	onClick,
 }: {
 	groupName: string;
 	groupColor?: string;
@@ -29,7 +30,12 @@ const GroupIcon = ({
 		: { backgroundColor: groupColor || "var(--main-green)" };
 
 	return (
-		<div className="group-icon" style={{ ...backgroundStyle, width: `${width}rem` || 40, height: width || 40 }}>
+		<div
+			className="group-icon"
+			data-group-name={groupName}
+			onClick={onClick}
+			style={{ ...backgroundStyle, width: `${width}rem` || "3rem", height: `${width}rem` || "3rem" }}
+		>
 			{groupPhoto ? null : initials}
 		</div>
 	);

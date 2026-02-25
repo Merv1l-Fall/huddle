@@ -7,8 +7,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const initAuth = useAuthStore((state) => state.initAuth);
 
   useEffect(() => {
-    initAuth();
-  }, []);
+	const unsubscribe = initAuth();
+	return () => unsubscribe();
+  }, [initAuth]);
 
   return <>{children}</>;
 }

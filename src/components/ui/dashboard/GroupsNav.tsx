@@ -15,9 +15,9 @@ const GroupsNav = () => {
 	return(
 		<nav className="groups-navbar">
 			{groups.map(group => (
-				<GroupIcon key={group.id} groupName={group.name} groupColor={group.color} groupPhoto={group.photoUrl} width={4} onClick={() => setActiveGroupId(group.id)} />
+				<GroupIcon key={group.id} groupName={group.name} groupColor={group.color} groupPhoto={group.photoUrl} width={3.5} onClick={() => setActiveGroupId(group.id)} />
 			))}
-			<button className="create-group-icon" onClick={() => setShowPopup(true)}>
+			<button data-group-name="Create Group" className="create-group-icon" onClick={() => setShowPopup(true)}>
 				<img src="/plus.svg" alt="plus sign" className="plus-icon" />
 			</button>
 		</nav>
