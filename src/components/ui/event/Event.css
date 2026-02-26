@@ -1,0 +1,15 @@
+.event-card{
+	background-color: var(--dark-gray);
+	border-radius: 8px;
+	box-shadow: var(--default-shadow);
+
+	display: flex;
+	max-height: 8rem;
+}
+
+.event-card-left, .event-card-right{
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 1rem;
+}

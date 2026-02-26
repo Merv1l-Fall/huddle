@@ -24,12 +24,6 @@ export const loginSchema = z.object({
 export const createGroupSchema = z.object({
 	name: z.string().min(1, "Group name is required").max(20, "group name cant be more than 20 characters"),
 	description: z.string().max(100, "Description cant be more than 100 characteres").optional(),
-	location: z.object({
-		address: z.string().min(1, "Address is required"),
-		city: z.string().min(1, "City is required"),
-		// lat: z.number().optional(),
-		// lng: z.number().optional(),
-	}).optional()
 })
 
 export const leaveGroupSchema = z.object({
@@ -40,7 +34,21 @@ export const setupSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters').max(20, 'Username must be at most 20 characters'),
 });
 
+export const createEventSchema = z.object({
+	title: z.string().min(1, "Event title is required").max(50, "Event title can't be more than 50 characters"),
+	description: z.string().max(200, "Description can't be more than 200 characters").optional(),
+	groupId: z.string().min(1, "Group ID is required"),
+	date: z.coerce.date({ message: "Invalid date format" }),
+	location: z.object({
+		address: z.string().min(1, "Address is required"),
+		city: z.string().min(1, "City is required"),
+		lat: z.number(),
+		lng: z.number(),
+	}).optional(),
+})
+
 //export types if needed later
+export type CreateEventInput = z.infer<typeof createEventSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type CreateGroupInput = z.infer<typeof createGroupSchema>;

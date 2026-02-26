@@ -3,7 +3,7 @@ import { auth, db } from "@/lib/firebase-admin";
 interface DasboardResponse {
 	message: string;
 	userId: string;
-	fetchedUserGroups: { id: string; name: string }[] | [];
+	fetchedUserGroups: { id: string; name: string; groupColor?: string, photoUrl?: string }[] | [];
 	pendingInvites?: { id: string; name: string }[] | [];
 }
 
@@ -32,10 +32,27 @@ export async function GET(req: Request): Promise<Response> {
 			})
 		)
 
+		const fetchGroupBackground: string[] = await Promise.all(
+			userGroups.map(async (groupId: string) => {
+				const groupDoc = await db.collection("groups").doc(groupId).get();
+				return groupDoc.data()?.groupColor || "";
+			})
+		)
+
+		const fetchGroupPhoto: string[] = await Promise.all(
+			userGroups.map(async (groupId: string) => {
+				const groupDoc = await db.collection("groups").doc(groupId).get();
+				return groupDoc.data()?.photoURL || "";
+			})
+		)
+
 		const GroupNamesAndIds = userGroups.map((groupId: string, index: number) => ({
 			id: groupId,
-			name: fetchGroupNames[index]
+			name: fetchGroupNames[index],
+			groupColor: fetchGroupBackground[index],
+			photoUrl: fetchGroupPhoto[index]
 		}))
+		
 
 		const data : DasboardResponse = {
 			message: "Dashboard accessed",

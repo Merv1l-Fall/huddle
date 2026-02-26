@@ -38,7 +38,6 @@ export async function POST(req: Request) {
 			invitedUsers: [],
 			photoURL: null,
 			groupColor: getRandomGroupColor(),
-			location: validatedData.location || null
 		});
 
 		//update user's groupIds

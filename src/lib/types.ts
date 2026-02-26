@@ -30,7 +30,6 @@ export interface Event {
 	description: string;
 	date: Date;
 	createdBy: string;
-	invitedUsers: string[];
 	attendees: Record<string, 'yes' | 'no' | 'pending'>;
 	createdAt: Date;
 	location?: {
@@ -39,37 +38,6 @@ export interface Event {
 		lat: number;
 		lng: number;
 	};
-}
-
-export interface GroupDetailResponse {
-  group: {
-    id: string;
-    name: string;
-    description: string;
-    createdBy: string;
-    memberIds: string[];
-    invitedUsers: string[];
-    adminIds: string[];
-    createdAt: Date;
-    photoURL?: string;
-    groupColor: string;
-  };
-  events: {
-    id: string;
-    title: string;
-    description: string;
-    date: Date;
-    createdBy: string;
-    invitedUsers: string[];
-    attendees: Record<string, 'yes' | 'no' | 'pending'>;
-    location?: {
-	  address: string;
-	  city: string;
-	  lat: number;
-	  lng: number;
-	};
-  }[];
-  userAttendanceStatus: Record<string, 'yes' | 'no' | 'pending'>; // For all events in this group
 }
 
 // For registration - no id or createdAt yet

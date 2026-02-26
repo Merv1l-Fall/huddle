@@ -27,7 +27,52 @@ export const createGroupSchema = z.object({
 	description: z.string().max(100, "Description can't be more than 100 characters").optional().or(z.literal('')),
 });
 
+export const createEventSchema = z.object({
+	title: z.string().min(1, "Event title is required").max(50, "Event title can't be more than 50 characters"),
+	description: z.string().max(200, "Description can't be more than 200 characters").optional().or(z.literal('')),
+	groupId: z.string().min(1, "Group ID is required"),
+	date: z.coerce.date({ message: "Invalid date format" }),
+	hasLocation: z.boolean(),
+	location: z.object({
+		address: z.string().min(1, "Address is required"),
+		city: z.string().min(1, "City is required"),
+	}).optional(),
+});
+
+export const groupDetailSchema = z.object({
+	group: z.object({
+		id: z.string(),
+		name: z.string(),
+		description: z.string(),
+		createdBy: z.string(),
+		memberIds: z.array(z.string()),
+		invitedUsers: z.array(z.string()),
+		adminIds: z.array(z.string()),
+		createdAt: z.coerce.date(),
+		photoURL: z.string().nullable().optional(),
+		groupColor: z.string(),
+	}),
+	events: z.array(z.object({
+		id: z.string(),
+		groupId: z.string(),
+		title: z.string(),
+		description: z.string(),
+		date: z.coerce.date(),
+		createdBy: z.string(),
+		attendees: z.record(z.string(), z.enum(['yes', 'no', 'pending'])),
+		location: z.object({
+			address: z.string(),
+			city: z.string(),
+			lat: z.number(),
+			lng: z.number(),
+		}).optional(),
+	})),
+	userAttendanceStatus: z.record(z.string(), z.enum(['yes', 'no', 'pending'])),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type SetupUserInput = z.infer<typeof setupUserSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type CreateGroupInput = z.infer<typeof createGroupSchema>;
+export type CreateEventInput = z.infer<typeof createEventSchema>;
+export type GroupDetailResponse = z.infer<typeof groupDetailSchema>;

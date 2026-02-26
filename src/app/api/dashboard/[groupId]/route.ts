@@ -1,10 +1,12 @@
 import { auth, db } from "@/lib/firebase-admin";
-import { GroupDetailResponse, Event } from "@/lib/types";
+import { Event } from "@/lib/types";
+import { GroupDetailResponse } from "@/lib/frontendValidation";
 
-export async function GET(req: Request, { params }: { params: { groupId: string } }): Promise<Response> {
+export async function GET(req: Request, { params }: { params?: { groupId?: string } }): Promise<Response> {
 	try {
 		const decodedToken = await auth.verifyIdToken(req.headers.get("Authorization")?.split(" ")[1] || "");
-		const groupId = params.groupId;
+		const url = new URL(req.url);
+		const groupId = params?.groupId || url.pathname.split("/").pop() || "";
 
 		if (!groupId) {
 			return Response.json({ error: "Group ID is required" }, { status: 400 });
@@ -37,12 +39,13 @@ export async function GET(req: Request, { params }: { params: { groupId: string 
 
 				return {
 					id: doc.id,
+					groupId: eventData.groupId || groupId,
 					title: eventData.title,
 					description: eventData.description,
 					date: eventData.date.toDate(),
 					createdBy: eventData.createdBy,
-					invitedUsers: eventData.invitedUsers,
 					attendees: eventData.attendees || {},
+					createdAt: eventData.createdAt.toDate(),
 					...(eventData.location && { location: eventData.location }),
 				};
 			})
