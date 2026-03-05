@@ -31,6 +31,7 @@ export async function POST(req: Request) {
         photoURL: decodedToken.picture || null,
         createdAt: Timestamp.now(),
         groupIds: [],
+        invitedGroups: [],
         needsSetup: true, // Flag to redirect to setup page
       });
 
@@ -66,6 +67,7 @@ export async function POST(req: Request) {
       photoURL: null,
       createdAt: Timestamp.now(),
       groupIds: [],
+      invitedGroups: [],
     });
 
     return Response.json(

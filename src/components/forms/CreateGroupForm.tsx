@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { CreateGroupInput, createGroupSchema } from '@/lib/frontendValidation';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/store/authStore';
+import { useGroupNavbarStore } from '@/lib/store/dashboardStore';
+import './FormBase.css';
 import './CreateGroupForm.css';
 
 interface CreateGroupFormProps {
@@ -15,6 +17,7 @@ interface CreateGroupFormProps {
 const CreateGroupForm = ({ onGoBackToggle }: CreateGroupFormProps) => {
 	const router = useRouter();
 	const { user } = useAuthStore();
+	const { loadGroups } = useGroupNavbarStore();
 	const [groupError, setGroupError] = useState<string | null>(null);
 
 	const { register, handleSubmit, reset, formState: { errors } } = useForm<CreateGroupInput>({
@@ -51,6 +54,10 @@ const CreateGroupForm = ({ onGoBackToggle }: CreateGroupFormProps) => {
 
 			if (response.ok) {
 				console.log('Group created successfully');
+				
+				// Reload groups to update the navbar
+				await loadGroups(idToken);
+				
 				reset();
 				setGroupError(null);
 				router.refresh();
@@ -66,7 +73,7 @@ const CreateGroupForm = ({ onGoBackToggle }: CreateGroupFormProps) => {
 	};
 
 	return (
-		<form className='create-group-form' onSubmit={handleSubmit(onSubmit)}>
+		<form className='create-group-form form-base' onSubmit={handleSubmit(onSubmit)}>
 			{groupError && <span className="error-message" style={{ display: 'block', marginBottom: '1rem' }}>{groupError}</span>}
 
 			<div className="form-group">

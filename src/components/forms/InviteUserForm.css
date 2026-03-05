@@ -1,0 +1,56 @@
+.invite-user-form {
+	background-color: var(--main-gray);
+	padding: 2rem;
+	border-radius: 0.5rem;
+	width: 24rem;
+	box-shadow: var(--default-shadow);
+
+	h2{
+		color: var(--main-white);
+		font-size: 1.2rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+	}
+}
+
+.invite-message {
+	display: block;
+	margin-bottom: 1rem;
+}
+
+.success-message {
+	color: var(--main-green);
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+
+.search-hint {
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.85rem;
+	margin-top: 0.35rem;
+}
+
+.invite-search-results {
+	margin-top: 0.5rem;
+	max-height: 9rem;
+	overflow-y: auto;
+	background-color: var(--dark-gray);
+	border-radius: 7px;
+	box-shadow: var(--default-shadow);
+}
+
+.invite-search-result-item {
+	width: 100%;
+	text-align: left;
+	padding: 0.65rem 0.8rem;
+	color: var(--main-white);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 0.95rem;
+	transition: background-color 0.1s ease-in-out;
+}
+
+.invite-search-result-item:hover {
+	background-color: #121212;
+}

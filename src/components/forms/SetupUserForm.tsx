@@ -1,6 +1,7 @@
 'use client'
 
 import "./SetupUserForm.css";
+import "./FormBase.css";
 import { SetupUserInput, setupUserSchema } from "@/lib/frontendValidation";
 import {useForm} from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -52,7 +53,7 @@ const onSubmit = async (data: SetupUserInput) => {
 }
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form className="form-base" onSubmit={handleSubmit(onSubmit)}>
 		{apiError && <span className="error-message" style={{ display: 'block', marginBottom: '1rem' }}>{apiError}</span>}
 		<div className="setup-form-group">
 			<label htmlFor="setup-username">Username</label>

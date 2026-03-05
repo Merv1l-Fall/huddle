@@ -27,8 +27,6 @@ export const createGroupSchema = z.object({
 	location: z.object({
 		address: z.string().min(1, "Address is required"),
 		city: z.string().min(1, "City is required"),
-		// lat: z.number().optional(),
-		// lng: z.number().optional(),
 	}).optional()
 })
 
@@ -40,9 +38,43 @@ export const setupSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters').max(20, 'Username must be at most 20 characters'),
 });
 
+export const createEventSchema = z.object({
+	title: z.string().min(1, "Event title is required").max(50, "Event title can't be more than 50 characters"),
+	description: z.string().max(500, "Description can't be more than 500 characters").optional().or(z.literal('')),
+	date: z.string().min(1, "Event date is required").refine((val) => {
+		const date = new Date(val);
+		return !isNaN(date.getTime()) && date > new Date();
+	}, "Event date must be in the future"),
+	location: z.object({
+		address: z.string().min(1, "Address is required").max(100, "Address can't be more than 100 characters"),
+		city: z.string().min(1, "City is required").max(50, "City can't be more than 50 characters"),
+		lat: z.number().optional(),
+		lng: z.number().optional(),
+	}).optional().nullable(),
+});
+
+export const joinEventSchema = z.object({
+	eventId: z.string().min(1, "Event ID is required"),
+	response: z.enum(["yes", "no"]),
+});
+
+export const inviteToGroupSchema = z.object({
+	groupId: z.string().min(1, "Group ID is required"),
+	username: z.string().min(1, "Username is required"),
+});
+
+export const respondToGroupInviteSchema = z.object({
+	groupId: z.string().min(1, "Group ID is required"),
+	response: z.enum(["accept", "decline"]),
+});
+
 //export types if needed later
+export type inviteToGroupInput = z.infer<typeof inviteToGroupSchema>;
+export type respondToGroupInviteInput = z.infer<typeof respondToGroupInviteSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type CreateGroupInput = z.infer<typeof createGroupSchema>;
 export type LeaveGroupInput = z.infer<typeof leaveGroupSchema>;
 export type SetupInput = z.infer<typeof setupSchema>;
+export type CreateEventInput = z.infer<typeof createEventSchema>;
+export type JoinEventInput = z.infer<typeof joinEventSchema>;

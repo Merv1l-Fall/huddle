@@ -1,0 +1,106 @@
+.form-base .form-group,
+.form-base .login-form-group,
+.form-base .setup-form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+.form-base .form-group input,
+.form-base .form-group textarea,
+.form-base .login-form-group input,
+.form-base .setup-form-group input {
+	padding: 0.8rem;
+	width: 100%;
+	background-color: var(--dark-gray);
+	color: var(--main-white);
+	border: none;
+	border-radius: 7px;
+	box-shadow: var(--default-shadow);
+	font-family: inherit;
+	font-size: 1rem;
+}
+
+.form-base .form-group textarea {
+	resize: none;
+	min-height: 80px;
+}
+
+.form-base .form-group label,
+.form-base .login-form-group label,
+.form-base .setup-form-group label {
+	color: var(--main-white);
+	font-size: 1rem;
+	margin-bottom: 0.2rem;
+}
+
+.form-base .form-group input:focus,
+.form-base .form-group textarea:focus,
+.form-base .login-form-group input:focus,
+.form-base .setup-form-group input:focus {
+	border-color: var(--main-green);
+	outline: none;
+}
+
+.form-base .error-message {
+	color: #ff6b6b;
+	font-size: 0.875rem;
+	margin-top: 0.25rem;
+}
+
+.form-base .form-buttons,
+.form-base .login-form-btns,
+.form-base .register-form-btns {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1.5rem;
+}
+
+.form-base .submit-btn,
+.form-base .cancel-btn,
+.form-base .login-form-btn,
+.form-base .register-form-btn,
+.form-base .setup-confirm-btn {
+	color: var(--main-white);
+	border-radius: 0.4rem;
+	height: 2rem;
+	border: none;
+	font-size: 0.9rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: var(--default-shadow);
+	white-space: nowrap;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+}
+
+.form-base .submit-btn,
+.form-base .cancel-btn,
+.form-base .login-form-btn,
+.form-base .register-form-btn {
+	flex: 1;
+}
+
+.form-base .submit-btn,
+.form-base .login-submit-btn,
+.form-base .register-submit-btn,
+.form-base .setup-confirm-btn {
+	background-color: var(--main-green);
+
+	&:hover {
+		background-color: #0B5A1B;
+		scale: 1.04;
+	}
+}
+
+.form-base .cancel-btn,
+.form-base .login-go-back-btn,
+.form-base .register-go-back-btn {
+	background-color: var(--dark-gray);
+
+	&:hover {
+		background-color: #121212;
+		scale: 1.04;
+	}
+}

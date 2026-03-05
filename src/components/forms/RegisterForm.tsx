@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { RegisterInput, registerSchema } from '@/lib/validation';
-import './RegisterForm.css';
+import './FormBase.css';
 import { useRouter } from 'next/navigation';
 
 interface RegisterFormProps {
@@ -53,7 +53,7 @@ const RegisterForm = ({ onGoBackToggle }: RegisterFormProps) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form className='form-base' onSubmit={handleSubmit(onSubmit)}>
 			<div className="form-group">
 				<label htmlFor="register-display-name">Display name (this can be changed later)</label>
 				<input

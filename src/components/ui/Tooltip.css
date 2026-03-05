@@ -1,0 +1,46 @@
+.tooltip-wrapper {
+	position: relative;
+	display: inline-block;
+}
+
+.tooltip-content {
+	position: fixed;
+	background-color: rgba(10, 10, 10, 0.95);
+	border-radius: 0.5rem;
+	padding: 0.35rem 0.6rem;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--main-white);
+	white-space: nowrap;
+	pointer-events: none;
+	z-index: 1000;
+	animation: tooltipFadeIn 0.12s ease;
+	letter-spacing: 0.01em;
+	display: flex;
+	align-items: center;
+	gap: 0.35rem;
+	transform: translateY(-50%);
+}
+
+@keyframes tooltipFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-50%) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(-50%) scale(1);
+	}
+}
+
+.tooltip-arrow {
+	position: absolute;
+	left: -0.35rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0.55rem;
+	height: 0.7rem;
+	background-color: rgba(10, 10, 10, 0.95);
+	clip-path: polygon(100% 0, 100% 100%, 0 50%);
+	flex-shrink: 0;
+}

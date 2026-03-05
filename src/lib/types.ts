@@ -7,6 +7,7 @@ export interface User {
   photoURL?: string
   createdAt: Timestamp
   groupIds: string[]   // groups the user belongs to
+  invitedGroups: string[]  // groups the user has been invited to
 
 }
 
@@ -54,21 +55,7 @@ export interface GroupDetailResponse {
     photoURL?: string;
     groupColor: string;
   };
-  events: {
-    id: string;
-    title: string;
-    description: string;
-    date: Date;
-    createdBy: string;
-    invitedUsers: string[];
-    attendees: Record<string, 'yes' | 'no' | 'pending'>;
-    location?: {
-	  address: string;
-	  city: string;
-	  lat: number;
-	  lng: number;
-	};
-  }[];
+  events: Event[];
   userAttendanceStatus: Record<string, 'yes' | 'no' | 'pending'>; // For all events in this group
 }
 

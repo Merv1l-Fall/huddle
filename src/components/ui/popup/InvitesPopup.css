@@ -1,0 +1,120 @@
+.invites-popup {
+	padding: 2rem;
+	background-color: var(--dark-gray);
+	border-radius: 7px;
+	color: var(--main-white);
+	min-width: 400px;
+	max-width: 500px;
+	box-shadow: var(--default-shadow);
+}
+
+.invites-popup h2 {
+	margin: 0 0 1.5rem 0;
+	font-size: 1.3rem;
+	color: var(--main-white);
+}
+
+.no-invites {
+	color: #999;
+	font-style: italic;
+	text-align: center;
+	padding: 1rem 0;
+}
+
+.invites-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.invite-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	background-color: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 7px;
+	transition: all 0.2s ease-in-out;
+}
+
+.invite-item:hover {
+	background-color: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.15);
+}
+
+.invite-info {
+	flex: 1;
+}
+
+.invite-info h3 {
+	margin: 0;
+	font-size: 1rem;
+	color: var(--main-white);
+}
+
+.invite-meta {
+	margin: 0.5rem 0 0 0;
+	font-size: 0.85rem;
+	color: #999;
+}
+
+.invite-actions {
+	display: flex;
+	gap: 0.75rem;
+	margin-left: 1rem;
+}
+
+.invite-btn {
+	padding: 0.6rem 1rem;
+	border: none;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	font-size: 0.85rem;
+	font-weight: 500;
+	white-space: nowrap;
+	transition: all 0.1s ease-in-out;
+	box-shadow: var(--default-shadow);
+}
+
+.invite-btn.accept {
+	background-color: var(--main-green);
+	color: var(--main-white);
+}
+
+.invite-btn.accept:hover:not(:disabled) {
+	background-color: #0B5A1B;
+	scale: 1.04;
+}
+
+.invite-btn.decline {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--main-white);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.invite-btn.decline:hover:not(:disabled) {
+	background-color: rgba(255, 255, 255, 0.15);
+	scale: 1.04;
+}
+
+.invite-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+	scale: 1;
+}
+
+.close-btn {
+	margin-top: 1.5rem;
+	padding: 0.6rem 1.2rem;
+	background-color: rgba(255, 255, 255, 0.1);
+	color: var(--main-white);
+	border: none;
+	border-radius: 0.4rem;
+	cursor: pointer;
+	font-size: 0.85rem;
+	font-weight: 500;
+	white-space: nowrap;
+	transition: all 0.1s ease-in-out;
+	box-shadow: var(--default-shadow);
+}

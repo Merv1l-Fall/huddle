@@ -8,12 +8,14 @@ const GroupIcon = ({
 	groupPhoto,
 	width,
 	onClick,
+	isActive,
 }: {
 	groupName: string;
 	groupColor?: string;
 	groupPhoto?: string;
 	width?: number;
 	onClick?: () => void;
+	isActive?: boolean;
 }) => {
 	const getInitials = (name: string) => {
 		const words = name.trim().split(" ");
@@ -31,8 +33,7 @@ const GroupIcon = ({
 
 	return (
 		<div
-			className="group-icon"
-			data-group-name={groupName}
+			className={`group-icon ${isActive ? "active" : ""}`}
 			onClick={onClick}
 			style={{ ...backgroundStyle, width: `${width}rem` || "3rem", height: `${width}rem` || "3rem" }}
 		>

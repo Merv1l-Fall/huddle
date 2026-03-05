@@ -17,12 +17,14 @@ export async function GET(req: Request): Promise<Response> {
 			return Response.json({ error: "User not found" }, { status: 404 });
 		}
 
-		const userGroups = userDoc.data()?.groupIds || [];
+		const userData = userDoc.data();
 
-		const pendingInvites = userDoc.data()?.invitedGroups || [];
+		const userGroups = userData?.groupIds || [];
+
+		const pendingInvites = userData?.invitedGroups || [];
 
 		if (userGroups.length === 0) {
-			return Response.json({ message: "Dashboard accessed", userId: decodedToken.uid, fetchedUserGroups: [], pendingInvites: [] }, { status: 200 });
+			return Response.json({ message: "Dashboard accessed", userId: decodedToken.uid, fetchedUserGroups: [], pendingInvites }, { status: 200 });
 		}
 		
 		const fetchGroupNames: string[] = await Promise.all(

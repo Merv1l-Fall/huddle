@@ -57,6 +57,7 @@ export async function POST(request: Request) {
         photoURL: decodedToken.picture || null,
         createdAt: Timestamp.now(),
         groupIds: [],
+        invitedGroups: [],
       });
     }
 

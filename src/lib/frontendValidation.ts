@@ -27,7 +27,30 @@ export const createGroupSchema = z.object({
 	description: z.string().max(100, "Description can't be more than 100 characters").optional().or(z.literal('')),
 });
 
+export const createEventSchema = z.object({
+	title: z.string().min(1, "Event title is required").max(45, "Event title can't be more than 45 characters"),
+	description: z.string().max(500, "Description can't be more than 500 characters").optional().or(z.literal('')),
+	date: z.string().min(1, "Event date is required").refine((val) => {
+		const date = new Date(val);
+		return !isNaN(date.getTime()) && date > new Date();
+	}, "Event date must be in the future"),
+	location: z.object({
+		address: z.string().min(1, "Address is required").max(100, "Address can't be more than 100 characters"),
+		city: z.string().min(1, "City is required").max(50, "City can't be more than 50 characters"),
+	}).optional().nullable(),
+});
+
+export const inviteToGroupSchema = z.object({
+	username: z
+		.string()
+		.min(1, "Username is required")
+		.max(20, "Username can't be more than 20 characters")
+		.regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
+});
+
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type SetupUserInput = z.infer<typeof setupUserSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type CreateGroupInput = z.infer<typeof createGroupSchema>;
+export type CreateEventInput = z.infer<typeof createEventSchema>;
+export type InviteToGroupInput = z.infer<typeof inviteToGroupSchema>;

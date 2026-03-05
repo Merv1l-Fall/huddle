@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, LoginInput } from "@/lib/frontendValidation";
 import { useRouter } from "next/navigation";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
 import { app } from "@/lib/firebase-client";
 import { FirebaseError } from "firebase/app";
-import "./LoginForm.css";
+import "./FormBase.css";
 
 interface LoginFormProps {
 	onGoBackToggle: (value: boolean) => void;
@@ -43,8 +43,25 @@ const LoginForm = ({ onGoBackToggle }: LoginFormProps) => {
 
 			if (error instanceof FirebaseError) {
 				console.error("Firebase error code:", error.code);
+				
+				// Check if account exists with different credential (e.g., Google)
+				if (error.code === "auth/wrong-password" || error.code === "auth/invalid-credential") {
+					try {
+						const auth = getAuth(app);
+						const signInMethods = await fetchSignInMethodsForEmail(auth, data.email);
+						
+						if (signInMethods.includes("google.com")) {
+							setLoginError("This email is registered with Google. Please sign in with Google.");
+							return;
+						}
+					} catch (fetchError) {
+						console.error("Error fetching sign-in methods:", fetchError);
+					}
+					setLoginError("Email or password is incorrect.");
+					return;
+				}
+				
 				switch (error.code) {
-					case "auth/wrong-password":
 					case "auth/user-not-found":
 						setLoginError("Email or password is incorrect.");
 						return;
@@ -68,7 +85,7 @@ const LoginForm = ({ onGoBackToggle }: LoginFormProps) => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form className="form-base" onSubmit={handleSubmit(onSubmit)}>
 			<div className="login-form-group">
 				<label htmlFor="login-email">Enter your email</label>
 				<input
