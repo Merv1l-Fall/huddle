@@ -89,7 +89,7 @@ const DashboardPage = () => {
 								<h2>{groupDetails.group.name}</h2>
 								<button className="invite-user-btn" onClick={handleInviteUser}>
 									<img src="/plus.svg" alt="invite friends button" className="floating-plus-icon" />
-									Friends
+									Invite Friends
 								</button>
 							</div>
 							<div className="dashboard-center-events">
