@@ -94,7 +94,7 @@ const DashboardPage = () => {
 							</div>
 							<div className="dashboard-center-events">
 								{groupDetails.events.length > 0 ? (
-									groupDetails.events.map((event) => {
+									groupDetails.events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()).map((event) => {
 										const attendeeCount = Object.values(event.attendees || {}).filter(
 											(status) => status === "yes",
 										).length;
